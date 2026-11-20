@@ -14,18 +14,6 @@ Boxling is an app for running isolated Linux workspaces, built on a fork of Appl
 
 ![Boxling main app showing boxes, resource usage, and port mappings.](images/boxling-macos.png)
 
-Click links in the terminal to open them. Click paths in the terminal to open them in the file browser.
-
-![Boxling terminal showing the original and mapped addresses for a link.](images/boxling-terminal-links.png)
-
-To access files in the box, authenticate with Touch ID or your Mac password.
-
-![macOS authentication prompt for access to files in the box.](images/boxling-file-authentication.png)
-
-Browse files in the box.
-
-![Boxling file browser showing a workspace folder and its context menu.](images/boxling-file-browser.png)
-
 ## Install
 
 [Download Boxling (.pkg)](https://github.com/janpmz/boxling/releases/download/v0.1.2/Boxling-0.1.2-arm64.pkg) · Apple silicon · macOS 26+
@@ -47,6 +35,20 @@ Use port mappings to reach an app inside a box.
 The virtual disk of each box is protected and owned by a dedicated macOS user. Direct access to the disk by other apps is blocked.
 
 ![MyBox service architecture: your macOS user runs mybox in a terminal and sends requests to the MyBox service running as the macOS user _mybox. The service starts and stops boxes, opens shells, and transfers files. The virtual disk is owned by _mybox, and direct disk access from your regular Mac account is blocked.](images/service-architecture.png)
+
+## Screenshots
+
+Click links in the terminal to open them. Click paths in the terminal to open them in the file browser.
+
+![Boxling terminal showing the original and mapped addresses for a link.](images/boxling-terminal-links.png)
+
+To access files in the box, authenticate with Touch ID or your Mac password.
+
+![macOS authentication prompt for access to files in the box.](images/boxling-file-authentication.png)
+
+Browse files in the box.
+
+![Boxling file browser showing a workspace folder and its context menu.](images/boxling-file-browser.png)
 
 ## Commands
 
