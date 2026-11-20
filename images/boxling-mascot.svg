@@ -1,0 +1,101 @@
+<svg id="mascot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Cute Boxling mascot wearing a headband with friendly waving arms">
+      <defs>
+        <linearGradient id="cb-body" x1="15%" y1="5%" x2="85%" y2="95%">
+          <stop offset="0%" stop-color="#F7C574" />
+          <stop offset="55%" stop-color="#E79C41" />
+          <stop offset="100%" stop-color="#CF7E25" />
+        </linearGradient>
+        <clipPath id="cb-clip">
+          <rect x="100" y="132" width="264" height="256" rx="46" />
+        </clipPath>
+      </defs>
+
+      <!-- Soft ground shadow -->
+      <ellipse cx="232" cy="444" rx="108" ry="14" fill="#071324" opacity="0.22" />
+
+      <!-- ======================================================= -->
+      <!-- GENTLE FLUTTERING HEADBAND TAILS                        -->
+      <!-- ======================================================= -->
+      <!-- Lower rounded tail -->
+      <path class="band-dark" d="M 360 196 C 394 200 418 212 436 228 Q 442 234 434 240 L 420 245 Q 412 247 406 239 C 393 224 377 214 356 210 Z" fill="#52C49C" stroke="#0F223D" stroke-width="7" stroke-linejoin="round" />
+
+      <!-- Upper rounded tail -->
+      <path class="band-main" d="M 362 184 C 398 168 424 159 448 164 Q 456 166 453 176 L 446 190 Q 442 198 432 196 C 410 192 388 196 364 200 Z" fill="#7EE8C2" stroke="#0F223D" stroke-width="7" stroke-linejoin="round" />
+      <path class="band-hi" d="M 382 184 Q 412 173 438 173" fill="none" stroke="#CCFEEB" stroke-width="4" stroke-linecap="round" opacity="0.7" />
+
+      <!-- ======================================================= -->
+      <!-- CUTE STUBBY ARMS                                        -->
+      <!-- ======================================================= -->
+      <!-- Wave pose (left arm waving, right arm relaxed) -->
+      <g id="arms-wave">
+        <path d="M 104 282 Q 66 268 68 236" fill="none" stroke="#0F223D" stroke-width="34" stroke-linecap="round" />
+        <path d="M 104 282 Q 66 268 68 236" fill="none" stroke="#1E3A61" stroke-width="20" stroke-linecap="round" />
+        <path d="M 360 294 Q 396 304 392 332" fill="none" stroke="#0F223D" stroke-width="34" stroke-linecap="round" />
+        <path d="M 360 294 Q 396 304 392 332" fill="none" stroke="#1E3A61" stroke-width="20" stroke-linecap="round" />
+      </g>
+
+      <!-- Relaxed pose (both arms resting gently down) -->
+      <g id="arms-relaxed" style="display: none;">
+        <path d="M 104 294 Q 68 304 72 332" fill="none" stroke="#0F223D" stroke-width="34" stroke-linecap="round" />
+        <path d="M 104 294 Q 68 304 72 332" fill="none" stroke="#1E3A61" stroke-width="20" stroke-linecap="round" />
+        <path d="M 360 294 Q 396 304 392 332" fill="none" stroke="#0F223D" stroke-width="34" stroke-linecap="round" />
+        <path d="M 360 294 Q 396 304 392 332" fill="none" stroke="#1E3A61" stroke-width="20" stroke-linecap="round" />
+      </g>
+
+      <!-- ======================================================= -->
+      <!-- CUTE STUBBY BOOTS                                       -->
+      <!-- ======================================================= -->
+      <line x1="180" y1="382" x2="180" y2="416" stroke="#0F223D" stroke-width="40" stroke-linecap="round" />
+      <line x1="180" y1="382" x2="180" y2="416" stroke="#1E3A61" stroke-width="25" stroke-linecap="round" />
+      <line x1="284" y1="382" x2="284" y2="416" stroke="#0F223D" stroke-width="40" stroke-linecap="round" />
+      <line x1="284" y1="382" x2="284" y2="416" stroke="#1E3A61" stroke-width="25" stroke-linecap="round" />
+
+      <!-- ======================================================= -->
+      <!-- PLUMP KRAFT PARCEL BODY + HEADBAND                      -->
+      <!-- ======================================================= -->
+      <rect x="100" y="132" width="264" height="256" rx="46" fill="url(#cb-body)" />
+      <g clip-path="url(#cb-clip)">
+        <!-- Warm bottom shadow -->
+        <path d="M 100 350 Q 232 386 364 322 L 364 396 L 100 396 Z" fill="#B56516" opacity="0.34" />
+        <!-- Subtle kraft packing tape tab peeking above headband -->
+        <rect x="212" y="128" width="40" height="44" rx="5" fill="#FDE6B7" opacity="0.68" stroke="#D18229" stroke-width="2" />
+        <!-- Top-left gloss -->
+        <path d="M 120 164 Q 120 148 138 148 H 186" fill="none" stroke="#FFE7B8" stroke-width="6.5" stroke-linecap="round" opacity="0.6" />
+
+        <!-- Headband wrapped cleanly around forehead -->
+        <rect class="band-main" x="96" y="174" width="272" height="32" fill="#7EE8C2" stroke="#0F223D" stroke-width="6.5" />
+        <line class="band-hi" x1="114" y1="184" x2="348" y2="184" stroke="#CCFEEB" stroke-width="4" stroke-linecap="round" opacity="0.65" />
+      </g>
+      <rect x="100" y="132" width="264" height="256" rx="46" fill="none" stroke="#0F223D" stroke-width="8" />
+
+      <!-- Soft rounded headband knot on right side -->
+      <ellipse class="band-main" cx="364" cy="190" rx="15" ry="18" fill="#7EE8C2" stroke="#0F223D" stroke-width="7" />
+      <path d="M 358 183 Q 366 190 358 197" fill="none" stroke="#0F223D" stroke-width="3.8" stroke-linecap="round" opacity="0.5" />
+
+      <!-- ======================================================= -->
+      <!-- CUTE EXPRESSIVE FACE                                    -->
+      <!-- ======================================================= -->
+      <!-- Warm rosy cheeks -->
+      <ellipse cx="150" cy="300" rx="17" ry="9.5" fill="#F07A7A" opacity="0.48" />
+      <ellipse cx="314" cy="300" rx="17" ry="9.5" fill="#F07A7A" opacity="0.48" />
+
+      <!-- Sweet wide-eyed expression -->
+      <g id="face-sweet">
+        <ellipse cx="184" cy="272" rx="18.5" ry="22.5" fill="#0F223D" />
+        <circle cx="177" cy="262" r="7" fill="#FFFFFF" />
+        <circle cx="191" cy="281" r="3" fill="#7EE8C2" />
+
+        <ellipse cx="280" cy="272" rx="18.5" ry="22.5" fill="#0F223D" />
+        <circle cx="273" cy="262" r="7" fill="#FFFFFF" />
+        <circle cx="287" cy="281" r="3" fill="#7EE8C2" />
+
+        <path d="M 216 290 Q 232 306 248 290" fill="none" stroke="#0F223D" stroke-width="6.5" stroke-linecap="round" />
+      </g>
+
+      <!-- Joyful ^ ^ expression -->
+      <g id="face-happy" style="display: none;">
+        <path d="M 164 278 Q 184 252 204 278" fill="none" stroke="#0F223D" stroke-width="8.5" stroke-linecap="round" />
+        <path d="M 260 278 Q 280 252 300 278" fill="none" stroke="#0F223D" stroke-width="8.5" stroke-linecap="round" />
+        <path d="M 215 292 Q 232 310 249 292" fill="none" stroke="#0F223D" stroke-width="6.8" stroke-linecap="round" />
+      </g>
+    </svg>

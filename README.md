@@ -4,6 +4,8 @@
 
 Boxling is an app for running isolated Linux workspaces, built on a fork of Apple's `container`.
 
+<img src="images/boxling-mascot.svg" alt="Boxling mascot waving and wearing a mint headband" width="192" height="192">
+
 - Isolated Debian workspaces on Apple silicon.
 - Touch ID or password for shell and file access.
 - Access to your Mac’s files, services, and the local network is blocked by default.
