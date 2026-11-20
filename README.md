@@ -26,15 +26,15 @@ Apps inside a box are blocked from accessing your Mac and local network.
 
 File transfers and shell access require approval with Touch ID or your password.
 
-![MyBox sits in the center with its /workspace folder inside. At upper left, mybox enter opens a shell with an arrow from Terminal into MyBox. Below it, mybox import copies Files into MyBox. On the right, mybox export copies Files out to a new Mac path. Each transfer or new shell session requires fresh approval with Touch ID or your Mac login password.](images/approved-operations.png)
+![Boxling operations: boxling enter, boxling import, and boxling export each require Touch ID or password approval.](images/approved-operations.png)
 
 Use port mappings to reach an app inside a box.
 
-![MyBox port mapping: mybox create my-project --outside-port 8766 --inside-port 8080. The browser connects through localhost:8766, bound to 127.0.0.1 on the Mac, to the app listening on 0.0.0.0:8080 inside MyBox. An arrow shows the allowed 8766 to 8080 mapping. A dashed path stops at a red X on the MyBox boundary to show that other ports are blocked.](images/port-mapping.png)
+![Boxling port mapping from localhost:8766 to 0.0.0.0:8080 inside the container, with other ports blocked.](images/port-mapping.png)
 
 The virtual disk of each box is protected and owned by a dedicated macOS user. Direct access to the disk by other apps is blocked.
 
-![MyBox service architecture: your macOS user runs mybox in a terminal and sends requests to the MyBox service running as the macOS user _mybox. The service starts and stops boxes, opens shells, and transfers files. The virtual disk is owned by _mybox, and direct disk access from your regular Mac account is blocked.](images/service-architecture.png)
+![Boxling service architecture showing your macOS user communicating with the Boxling service under macOS user _boxling, while direct terminal access to the virtual disk is blocked.](images/service-architecture.png)
 
 ## Screenshots
 
