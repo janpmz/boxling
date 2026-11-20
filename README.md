@@ -2,9 +2,9 @@
 
 **A strict, Touch ID-gated macOS sandbox for running AI coding agents and untrusted npm repos safely.**
 
-Boxling is an app for running isolated Linux workspaces, built on a fork of Apple's `container`.
-
 <img src="images/boxling-mascot.svg" alt="Boxling mascot waving and wearing a mint headband" width="192" height="192">
+
+Boxling is an app for running isolated Linux workspaces, built on a fork of Apple's `container`.
 
 - Isolated Debian workspaces on Apple silicon.
 - Touch ID or password for shell and file access.
