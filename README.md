@@ -1,5 +1,7 @@
 # Boxling
 
+**A strict, Touch ID-gated macOS sandbox for running AI coding agents and untrusted npm repos safely.**
+
 Boxling is an app for running isolated Linux workspaces, built on a fork of Apple's `container`.
 
 - Isolated Debian workspaces on Apple silicon.
@@ -35,6 +37,18 @@ Use port mappings to reach an app inside a box.
 The virtual disk of each box is protected and owned by a dedicated macOS user. Direct access to the disk by other apps is blocked.
 
 ![Boxling service architecture showing your macOS user communicating with the Boxling service under macOS user _boxling, while direct terminal access to the virtual disk is blocked.](images/service-architecture.png)
+
+## FAQ
+
+**Is it Apple notarized?**
+
+Yes. Apple notarized the installer.
+
+**What's open source vs. closed source?**
+
+- The container fork is open source.
+- The CLI is open source under the MIT License.
+- The macOS desktop app is closed source.
 
 ## Screenshots
 
