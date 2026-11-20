@@ -22,7 +22,7 @@ Boxling is an app for running isolated Linux workspaces, built on a fork of Appl
 
 Apps inside a box are blocked from accessing your Mac and local network.
 
-![Node.js runs inside an isolated Linux box on your Mac. It can reach the public internet. MyBox blocks direct access to Mac files, Mac services, and the local network.](images/isolated-workspace.png)
+![A Boxling Debian box runs Node.js on your Mac. The box can reach the public internet. Access to Mac files, Mac services, and the local network is blocked by default.](images/isolated-workspace.png)
 
 File transfers and shell access require approval with Touch ID or your password.
 
