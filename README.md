@@ -14,6 +14,18 @@ Boxling is an app for running isolated Linux workspaces, built on a fork of Appl
 
 ![Boxling main app showing boxes, resource usage, and port mappings.](images/boxling-macos.png)
 
+Click links in the terminal to open them. Click paths in the terminal to open them in the file browser.
+
+![Boxling terminal showing the original and mapped addresses for a link.](images/boxling-terminal-links.png)
+
+To access files in the box, authenticate with Touch ID or your Mac password.
+
+![macOS authentication prompt for access to files in the box.](images/boxling-file-authentication.png)
+
+Browse files in the box.
+
+![Boxling file browser showing a workspace folder and its context menu.](images/boxling-file-browser.png)
+
 ## Install
 
 [Download Boxling (.pkg)](https://github.com/janpmz/boxling/releases/download/v0.1.2/Boxling-0.1.2-arm64.pkg) · Apple silicon · macOS 26+
