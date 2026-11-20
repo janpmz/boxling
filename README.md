@@ -38,7 +38,8 @@ The virtual disk of each box is protected and owned by a dedicated macOS user. D
 
 ## Screenshots
 
-Click links in the terminal to open them. Click paths in the terminal to open them in the file browser.
+Click links in the terminal to open them.\
+Click paths in the terminal to open them in the file browser.
 
 ![Boxling terminal showing the original and mapped addresses for a link.](images/boxling-terminal-links.png)
 
