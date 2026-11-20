@@ -1,21 +1,91 @@
 # Boxling
 
-Run apps in isolated Linux workspaces on your Mac.
+Boxling is an app for running isolated Linux workspaces, built on a fork of Apple's `container`.
 
-**Requires Apple silicon and macOS 26 or later.**
+## Example
 
-[**Desktop downloads**](https://github.com/janpmz/boxling/releases) · [Command-line guide](https://github.com/janpmz/boxling-cli)
+- Node.js inside a box cannot access files or services on your Mac.
+- Apps on your Mac cannot run commands or access files inside the box without your approval.
 
-The desktop installer will be published on the Releases page.
+![Boxling main app showing boxes, resource usage, and port mappings.](images/boxling-macos.png)
 
-![Boxling's Boxes tab showing two sample Linux workspaces, their resource usage, and forwarded ports.](images/boxling-macos.png)
+## Install
 
-## Work inside a box
+[Download Boxling (.pkg)](https://github.com/janpmz/boxling/releases/download/v0.1.2/Boxling-0.1.2-arm64.pkg) · Apple silicon · macOS 26+
 
-Open a Linux shell in the **Terminal** tab, browse `/workspace` in **Files**, and edit text files in the **Editor** tab. Use **Box My Folder** to copy an existing Mac folder into a new box.
+## How it works
 
-## Control access
+![Node.js runs inside an isolated Linux box on your Mac. It can reach the public internet. MyBox blocks direct access to Mac files, Mac services, and the local network.](images/isolated-workspace.png)
 
-Boxling uses macOS approval for shells, commands, and file access. A file-browsing session keeps its approval while the connection is open.
+![MyBox sits in the center with its /workspace folder inside. At upper left, mybox enter opens a shell with an arrow from Terminal into MyBox. Below it, mybox import copies Files into MyBox. On the right, mybox export copies Files out to a new Mac path. Each transfer or new shell session requires fresh approval with Touch ID or your Mac login password.](images/approved-operations.png)
 
-Each box runs on a separate virtual network. When you want to open a web app running in a box, forward its port to `localhost` on your Mac.
+![MyBox port mapping: mybox create my-project --outside-port 8766 --inside-port 8080. The browser connects through localhost:8766, bound to 127.0.0.1 on the Mac, to the app listening on 0.0.0.0:8080 inside MyBox. An arrow shows the allowed 8766 to 8080 mapping. A dashed path stops at a red X on the MyBox boundary to show that other ports are blocked.](images/port-mapping.png)
+
+![MyBox service architecture: your macOS user runs mybox in a terminal and sends requests to the MyBox service running as the macOS user _mybox. The service starts and stops boxes, opens shells, and transfers files. The virtual disk is owned by _mybox, and direct disk access from your regular Mac account is blocked.](images/service-architecture.png)
+
+## Commands
+
+```text
+$ boxling
+Boxling 0.1.2 — a small Linux workspace on your Mac
+
+Usage: boxling <command>
+
+  create <name> [--inside-port N --outside-port N] [--cpus N] [--memory 2g]
+                         Create and start a Debian box (default: 2 CPUs, --memory 2g).
+                         --inside-port: server port inside the Linux box.
+                         --outside-port: localhost port on your Mac.
+                         Repeat both flags for multiple TCP port mappings;
+                         pair the first inside port with the first outside port.
+  enter <name>           Start if needed and open Bash in /workspace.
+                         Accept a unique part of a name. Exact names take priority.
+                         List matches and stop if the partial name is ambiguous.
+  enter <name> -- <command> [arguments...]
+                         Run a Linux command; piped input is supported.
+  copy <source-name> <new-name>
+                         Copy installed tools, settings, and files into a stopped box.
+                         Include saved credentials. Keep the source's CPU and memory limits.
+                         Use a separate network. Do not copy port mappings or running processes.
+  import <name> <host-path> [...]
+                         Copy a file or whole folder to /workspace/<source-name>.
+                         Select multiple paths with one access approval.
+                         Never replace an existing destination.
+                         Start the box if it is stopped.
+                         Include all file names, including hidden files.
+                         Skip symlinks and special files.
+  export <name> <box-path> <new-host-path>
+                         Copy a file or whole folder out of /workspace.
+                         Never replace an existing destination.
+                         Start the box if it is stopped.
+                         Relative box paths start at /workspace. Reject links.
+  start <name>           Start a stopped box, keeping its files.
+  stop <name>            Stop a box, keeping its files.
+  delete <name> [--yes]  Permanently delete a box and all its files. Stop it first if running.
+                         Remove its port mappings and dedicated network. Ask for confirmation.
+                         Use the full name; --yes skips confirmation.
+  resize [name]          Choose a stopped box and enter CPU, memory, and disk values.
+                         Press Enter to keep a value.
+  resize <name> [--cpus N] [--memory-gb N] [--disk-size-gb N]
+                         Change resources on a stopped box. Keep its files and ports.
+                         Enter sizes in GB, using the macOS units for memory and storage.
+                         Show available Mac resources before applying changes.
+                         Memory: at least 200 MB. Disk: 128 MiB to less than 16 TiB.
+                         Disk changes copy the filesystem and need temporary Mac space.
+  ports add <name> --inside-port N --outside-port N
+                         Add a TCP mapping without restarting a running box.
+  ports remove <name> --outside-port N
+                         Remove a Boxling mapping without restarting the box.
+  ports list <name>      Show saved mappings and forwarding status.
+  list [--json]          List boxes created by this CLI, including stopped ones.
+                         Show CPU cores, memory, disk use, disk capacity, and ports.
+                         --json: structured data with numeric sizes in bytes.
+  setup-service          Install the private Boxling account and register its service.
+  setup-network          Install the PF helper and automatic Mac startup setup.
+  completion zsh         Print the zsh script for Tab completion.
+  help                   Show this help.
+  --version              Show the Boxling version.
+
+No host folders, project disks, or SSH agents get mounted.
+Each box connects to its own virtual network. Boxling checks the firewall rules before starting Linux.
+Run setup-service once in a Mac terminal. PF changes require administrator access.
+```
