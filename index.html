@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c0c0c">
+  <meta name="description" content="Run AI coding agents and untrusted npm repos in isolated Debian workspaces on your Mac. Approve access with Touch ID or your Mac password.">
+  <title>Boxling — A macOS sandbox for AI coding agents and untrusted npm repos</title>
+  <link rel="icon" href="assets/app-icon.png">
+  <link rel="stylesheet" href="landing.css?v=70259a69">
+  <link rel="stylesheet" href="demo.css?v=38910e3b">
+  <script defer src="sample-files.js"></script>
+  <script defer src="demo.js?v=222b73c1"></script>
+</head>
+<body>
+  <header class="mast">
+    <nav aria-label="Main navigation">
+      <div class="brand"><button class="brand-mascot" type="button" data-image-preview aria-label="Enlarge Boxling mascot"><img src="images/boxling-mascot.svg" width="44" height="44" alt="Boxling mascot"></button><a href="#top" aria-label="Boxling home">Boxling</a></div>
+      <div class="navlinks"><a href="#inside">How it works</a><a class="github-link" href="https://github.com/janpmz/boxling">GitHub</a><a class="nav-download" href="#install">Install</a></div>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="showcase" aria-labelledby="title">
+      <canvas id="field" aria-hidden="true"></canvas>
+      <div class="intro">
+        <h1 id="title"><span>A macOS sandbox for <em class="agent-color">AI coding agents</em></span> <span>and <em class="repo-color">untrusted npm repos</em></span></h1>
+        <div class="hero-actions">
+          <a class="pill primary" href="https://github.com/janpmz/boxling/releases/download/v0.1.2/Boxling-0.1.2-arm64.pkg">Download for Mac</a>
+        </div>
+      </div>
+      <figure id="demo" aria-label="Interactive Boxling demo">
+        <figcaption>Click the tabs to explore the app.</figcaption>
+        <div class="app-window">
+          <div id="tabstrip" role="tablist" aria-label="Boxling views"></div>
+          <div id="pan"><div id="scaled"><div id="stage" role="tabpanel" aria-label="Boxes">
+            <img class="native-screen" src="assets/boxes.png" width="1180" height="712" alt="Boxling’s Boxes window with document-player-box and test running, and experiment-box stopped.">
+            <div id="controls"></div>
+          </div></div></div>
+          <div class="app-overlays"></div>
+        </div>
+        <noscript>Enable JavaScript to use the four tabs in the demo.</noscript>
+        <div id="hint" class="demo-caption" role="status"></div>
+      </figure>
+    </section>
+
+    <section class="install" id="install" aria-labelledby="download">
+      <h2 id="download">Install with Homebrew</h2>
+      <div class="install-command">
+        <code id="brew-command">brew install --cask janpmz/tap/boxling</code>
+        <button type="button" id="copy-install" aria-label="Copy Homebrew command">Copy</button>
+      </div>
+      <p>Apple silicon · macOS 26+</p>
+      <span class="visually-hidden" role="status" id="copy-status"></span>
+    </section>
+
+    <section id="inside" class="features" aria-labelledby="inside-title">
+      <h2 id="inside-title">How it works</h2>
+      <div class="diagram-gallery">
+        <div id="diagram-tabs" role="tablist" aria-label="System diagrams" aria-orientation="vertical" hidden></div>
+        <div class="readme-diagrams">
+          <figure class="diagram-panel" id="diagram-isolation" data-topic="Isolation">
+            <div class="diagram-art">
+              <img class="diagram-original" src="images/isolated-workspace.png" width="4480" height="1840" loading="lazy" alt="A Debian box can reach the public internet. Mac files, Mac services, and the local network are blocked by default.">
+              <button class="diagram-preview-trigger" type="button" data-image-preview aria-label="Enlarge Isolation diagram"></button>
+            </div>
+            <figcaption>Apps inside a box are blocked from accessing your Mac and local network.</figcaption>
+          </figure>
+          <figure class="diagram-panel" id="diagram-approval" data-topic="Touch ID">
+            <div class="diagram-art">
+              <img class="diagram-original" src="images/approved-operations.png" width="4480" height="1960" loading="lazy" alt="The enter, import and export commands each require approval with Touch ID or your password.">
+              <button class="diagram-preview-trigger" type="button" data-image-preview aria-label="Enlarge Touch ID diagram"></button>
+            </div>
+            <figcaption>File transfers and shell access require approval with Touch ID or your password.</figcaption>
+          </figure>
+          <figure class="diagram-panel" id="diagram-ports" data-topic="Port mapping">
+            <div class="diagram-art">
+              <img class="diagram-original" src="images/port-mapping.png" width="4480" height="1920" loading="lazy" alt="Mac port 8766 on loopback forwards to port 8080 in the box. Other ports are blocked.">
+              <button class="diagram-preview-trigger" type="button" data-image-preview aria-label="Enlarge Port mapping diagram"></button>
+            </div>
+            <figcaption>Use port mappings to reach an app inside a box.</figcaption>
+          </figure>
+          <figure class="diagram-panel" id="diagram-disk" data-topic="Disk access">
+            <div class="diagram-art">
+              <img class="diagram-original" src="images/service-architecture.png" width="4480" height="2480" loading="lazy" alt="The macOS user talks to the Boxling service under _boxling. The service owns the virtual disk and direct terminal access is blocked.">
+              <button class="diagram-preview-trigger" type="button" data-image-preview aria-label="Enlarge Disk access diagram"></button>
+            </div>
+            <figcaption>The virtual disk of each box is protected and owned by a dedicated macOS user. Direct access to the disk by other apps is blocked.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots" class="features" aria-labelledby="screenshots-title">
+      <h2 id="screenshots-title">Screenshots</h2>
+      <div class="feature-pair">
+        <figure class="feature">
+          <figcaption>Create a sandbox</figcaption>
+          <button type="button" data-image-preview aria-label="Enlarge screenshot: Create a sandbox"><img loading="lazy" src="assets/boxes-screenshot.png" alt="Boxling’s Boxes tab with two workspaces and their CPU, memory and port mappings."></button>
+        </figure>
+        <figure class="feature">
+          <figcaption>Browse the files inside</figcaption>
+          <button type="button" data-image-preview aria-label="Enlarge screenshot: Browse the files inside"><img loading="lazy" src="images/boxling-file-browser.png" alt="Boxling’s Files tab showing the project tree and file actions."></button>
+        </figure>
+        <figure class="feature">
+          <figcaption>Approve access with Touch ID</figcaption>
+          <button type="button" data-image-preview aria-label="Enlarge screenshot: Approve access with Touch ID"><img loading="lazy" src="images/boxling-file-authentication.png" alt="The macOS approval prompt for file access in Boxling."></button>
+        </figure>
+        <figure class="feature">
+          <figcaption>Open a forwarded port</figcaption>
+          <button type="button" data-image-preview aria-label="Enlarge screenshot: Open a forwarded port"><img loading="lazy" src="images/boxling-terminal-links.png" alt="Boxling Terminal showing the original and mapped localhost addresses."></button>
+        </figure>
+      </div>
+    </section>
+
+    <section class="install install-bottom" id="get-boxling" aria-labelledby="bottom-install-title">
+      <h2 id="bottom-install-title">Install with Homebrew</h2>
+      <div class="install-command">
+        <code>brew install --cask janpmz/tap/boxling</code>
+        <button type="button" aria-label="Copy Homebrew command">Copy</button>
+      </div>
+      <span class="visually-hidden" role="status"></span>
+    </section>
+  </main>
+  <footer><a class="brand" href="#top"><i aria-hidden="true"></i>Boxling</a><div><a class="github-link" href="https://github.com/janpmz/boxling">GitHub</a><a href="https://github.com/janpmz/boxling-cli">CLI guide</a><a href="https://github.com/janpmz/boxling/releases">Releases</a></div></footer>
+  <dialog id="image-preview" aria-labelledby="image-preview-title">
+    <div class="image-toolbar">
+      <h2 id="image-preview-title"></h2>
+      <button type="button" class="image-close" aria-label="Close preview" autofocus></button>
+    </div>
+    <div class="image-canvas"><img alt=""></div>
+  </dialog>
+  <script defer src="landing.js?v=6833cf17"></script>
+</body></html>
