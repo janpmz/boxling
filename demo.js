@@ -897,6 +897,20 @@ function revealTerminalPath(owner, path) {
   openTab('files');
 }
 
+function appendListingRow(container, owner, row) {
+  if (!row.path) {
+    container.append(row.text);
+    return;
+  }
+  const link = node('button', 'term-path', row.name);
+  link.type = 'button';
+  link.classList.toggle('directory', owner.files.get(row.path).kind === 'folder');
+  link.setAttribute('aria-label', 'Open ' + row.path + ' in Files');
+  link.onclick = () => revealTerminalPath(owner, row.path);
+  container.append(row.prefix || '', link);
+  return link;
+}
+
 function openTerminalPorts(trigger, owner, inside, point) {
   if (menuOwner === trigger) { dismissPopup(true); return; }
   const panel = node('div', 'app-menu');
@@ -926,20 +940,14 @@ function terminalExample(owner, transcript) {
   const command = node('div', 'term-command');
   command.append(terminalPrompt(owner, root), 'ls -lhR website/src');
   transcript.append(command);
-  let firstPath, nestedPath;
+  let firstPath, nestedPath, firstFile;
   for (const row of listing(owner, website + '/src', 'lhR', 'website/src')) {
     const line = node('div', 'term-output');
-    if (row.path) {
-      const link = node('button', 'term-path', row.name);
-      link.type = 'button';
-      link.classList.toggle('directory', owner.files.get(row.path).kind === 'folder');
-      link.setAttribute('aria-label', 'Open ' + row.path + ' in Files');
-      link.onclick = () => revealTerminalPath(owner, row.path);
-      line.append(row.prefix || '', link);
+    const link = appendListingRow(line, owner, row);
+    if (link) {
       firstPath ??= link;
       if (row.prefix === undefined && link !== firstPath) nestedPath ??= link;
-    } else {
-      line.textContent = row.text;
+      if (!link.classList.contains('directory')) firstFile ??= link;
     }
     transcript.append(line);
   }
@@ -959,7 +967,8 @@ function terminalExample(owner, transcript) {
   const local = node('div', 'term-output');
   local.append(node('span', 'term-local-label', 'Local: '), address);
   transcript.append(start, local);
-  annotateTerminalTarget(nestedPath || firstPath, 'Open in Files', 'path-hint');
+  if (firstFile) annotateTerminalTarget(firstFile, 'Click a file to open in Files', 'file-hint');
+  annotateTerminalTarget(nestedPath || firstPath, 'Open folder in Files', 'path-hint');
   annotateTerminalTarget(address, 'Choose a port', 'port-hint');
 }
 
@@ -993,12 +1002,11 @@ function runSample(command) {
     case 'ls':
       if (!file)
         return 'ls: cannot access ' + path + ': No such file or directory';
-      if (file.kind !== 'folder')
-        return leaf(path);
       const options = args.filter(a => a.startsWith('-')).join('');
-      const rows = listing(owner, path, options, arg || '.');
-      return rows.map(row => row.text ?? ((row.prefix || '') + row.name))
-          .join(/[lR]/.test(options) ? '\n' : '  ');
+      const rows = file.kind === 'folder'
+          ? listing(owner, path, options, arg || '.')
+          : [{name:leaf(path), path}];
+      return {rows, separator:/[lR]/.test(options) ? '\n' : '  '};
     case 'cd': {
       const dest = arg ? path : root;
       if (owner.files.get(dest)?.kind !== 'folder')
@@ -1059,7 +1067,18 @@ function renderTerminal() {
   terminal.append(body);
   body.append(transcript);
   if (shell.seeded) terminalExample(owner, transcript);
-  const history = node('pre', 'term-history', shell.history.join(''));
+  const history = node('pre', 'term-history');
+  for (const {prompt, output} of shell.history) {
+    history.append(prompt + '\n');
+    if (typeof output === 'string') {
+      if (output) history.append(output + '\n');
+    } else {
+      output.rows.forEach((row, index) => {
+        appendListingRow(history, owner, row);
+        history.append(index === output.rows.length - 1 ? '\n' : output.separator);
+      });
+    }
+  }
   transcript.append(history);
   const line = node('form', 'term-line');
   line.autocomplete = 'off';
@@ -1086,9 +1105,7 @@ function renderTerminal() {
       shell.history = [];
     } else {
       const output = runSample(command);
-      shell.history.push(
-          'root@' + owner.name + '.box.test:' + before + '# ' + command + '\n' +
-          (output ? output + '\n' : ''));
+      shell.history.push({prompt:'root@' + owner.name + '.box.test:' + before + '# ' + command, output});
     }
     if (command)
       shell.commands.push(command);
