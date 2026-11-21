@@ -20,7 +20,17 @@ Boxling is an app for running isolated Linux workspaces, built on a fork of Appl
 
 ## Install
 
-[Download Boxling (.pkg)](https://github.com/janpmz/boxling/releases/download/v0.1.2/Boxling-0.1.2-arm64.pkg) · Apple silicon · macOS 26+
+Requires Apple silicon and macOS 26 or later.
+
+### Homebrew
+
+```sh
+brew install --cask janpmz/tap/boxling
+```
+
+### macOS installer
+
+[Download Boxling (.pkg)](https://github.com/janpmz/boxling/releases/download/v0.1.2/Boxling-0.1.2-arm64.pkg)
 
 ## How it works
 
