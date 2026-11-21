@@ -52,7 +52,7 @@
   width:1180px;
   height:52px;
   transform-origin:top left;
-  background:var(--tab-image,url(assets/boxes.png)) left top / 1180px 712px no-repeat;
+  background:var(--tab-image,url(assets/terminal.png)) left top / 1180px 712px no-repeat;
 }
 
 #tabstrip button,.hit {

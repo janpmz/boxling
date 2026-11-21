@@ -135,7 +135,7 @@ function init() {
     sampleBox('test', true, 2, 2, 0.2, 11111, 1111)
   ];
   box = boxes[0];
-  view = 'boxes';
+  view = 'terminal';
   filter = '';
   documents = [];
   shells = [];
